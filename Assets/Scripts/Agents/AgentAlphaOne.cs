@@ -41,11 +41,6 @@ public class AgentAlphaOne : Agent
         game.OnGameLost -= OnGameLost;
     }
 
-    [Button]
-    public void TestDecision() {
-        RequestDecision();
-    }
-
     private void OnGameLost()
     {
         AddReward(lossReward);

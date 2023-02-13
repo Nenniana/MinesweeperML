@@ -25,8 +25,6 @@ namespace MineSweeper
         private float gridSize = 1;
         [SerializeField]
         private int mineCount = 32;
-        [SerializeField]
-        private int mineSize = 16;
 
         [SerializeField]
         private float progressWeight = 2;
@@ -152,6 +150,7 @@ namespace MineSweeper
                     Flag(x, y);
 
                 informationUtilities.UpdateInformation(state);
+                Debug.Log("I made a move");
             }
         }
 
@@ -319,7 +318,7 @@ namespace MineSweeper
             if (((height * width) - tilesRevealed) <= mineCount) {
                 gameState = GameState.Won;
                 OnGameWon?.Invoke();
-                RevealAll(true);
+                // RevealAll(true);
                 Debug.Log("Game won!");
             }
         }

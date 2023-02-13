@@ -4,7 +4,8 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace MineSweeper {
+namespace MineSweeper
+{
     public class InformationUtilities
     {
         [ShowInInspector]
@@ -17,7 +18,8 @@ namespace MineSweeper {
 
         private Game game;
 
-        public void Initialize(Tile[,] state, Game _game) {
+        public void Initialize(Tile[,] state, Game _game)
+        {
             game = _game;
             // possibleMoves = new List<Tile>();
             // relevantTiles = new List<Tile>();
@@ -28,11 +30,9 @@ namespace MineSweeper {
             GenerateFloats(state);
         }
 
-        private void GenerateFloats(Tile[,] state) {
+        private void GenerateFloats(Tile[,] state)
+        {
             relevantTilesFloats.Clear();
-
-            int width = state.GetLength(0);
-            int height = state.GetLength(1);
 
             for (int x = 0; x < state.GetLength(0); x++)
             {
@@ -50,10 +50,31 @@ namespace MineSweeper {
             }
         }
 
-        public void UpdateInformation(Tile[,] state) {
+        private string LogTileFloats(Tile[,] state)
+        {
+            string toReturn = "";
+            toReturn += "\t0\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\n\n";
+            for (int x = state.GetLength(0) - 1; x > -1; x--)
+            {
+                toReturn += (state.GetLength(0) - x - 1).ToString() + "\t";
+                for (int y = 0; y < state.GetLength(1); y++)
+                {
+                    int index = (x % state.GetLength(0)) + (y * state.GetLength(1));
+                    string firstSub = ((TileType)((int)relevantTilesFloats[index])).ToString().Substring(0, 3);
+                    string secondSub = ((TileType)((int)relevantTilesFloats[index])).ToString().Substring(((TileType)((int)relevantTilesFloats[index])).ToString().Length - 1, 1);
+                    toReturn += firstSub + secondSub + "\t";
+                }
+                toReturn += "\n\n";
+            }
+            return toReturn;
+        }
+
+        public void UpdateInformation(Tile[,] state)
+        {
             // UpdatePossibleMoves(state);
             // UpdateRelevantTiles(possibleMoves);
             GenerateFloats(state);
+            // Debug.Log(LogTileFloats(state));
         }
 
         /* private void UpdatePossibleMoves(Tile[,] state)

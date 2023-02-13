@@ -1,0 +1,38 @@
+{
+    "Minesweeper_Pick_Move": {
+        "checkpoints": [
+            {
+                "steps": 499999,
+                "file_path": "results\\TestOnFour1\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-499999.onnx",
+                "reward": 69.20132717492984,
+                "creation_time": 1676296447.319892,
+                "auxillary_file_paths": [
+                    "results\\TestOnFour1\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-499999.pt"
+                ]
+            },
+            {
+                "steps": 500008,
+                "file_path": "results\\TestOnFour1\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-500008.onnx",
+                "reward": 69.20501982276119,
+                "creation_time": 1676296447.381863,
+                "auxillary_file_paths": [
+                    "results\\TestOnFour1\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-500008.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500008,
+            "file_path": "results\\TestOnFour1\\Minesweeper_Pick_Move.onnx",
+            "reward": 69.20501982276119,
+            "creation_time": 1676296447.381863,
+            "auxillary_file_paths": [
+                "results\\TestOnFour1\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-500008.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
