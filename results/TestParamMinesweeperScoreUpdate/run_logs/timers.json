@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1676235025",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Unity Projects\\Minesweeper 1.0\\venv\\Scripts\\mlagents-learn Config/Minesweeper_Pick_Move.yaml --run-id=TestParamMinesweeperScoreUpdate --force",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1676235087"
+    },
+    "total": 62.57000959999999,
+    "count": 1,
+    "self": 0.008143499999988535,
+    "children": {
+        "run_training.setup": {
+            "total": 0.11857539999999989,
+            "count": 1,
+            "self": 0.11857539999999989
+        },
+        "TrainerController.start_learning": {
+            "total": 62.443290700000006,
+            "count": 1,
+            "self": 0.00010830000000794371,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 62.443168099999994,
+                    "count": 1,
+                    "self": 62.443168099999994
+                },
+                "TrainerController._save_models": {
+                    "total": 1.4300000003686364e-05,
+                    "count": 1,
+                    "self": 1.4300000003686364e-05
+                }
+            }
+        }
+    }
+}
