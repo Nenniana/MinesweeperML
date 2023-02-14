@@ -30,8 +30,9 @@ public class GameManager : MonoBehaviour
     // All games played, even those that were never won/lost.
     public int GamesPlayedInTotal { get => gamesPlayedInTotal; private set => gamesPlayedInTotal = value; }
     public bool EnableScores { get => enableScores; private set => enableScores = value; }
+    public int GamesPlayedInInterval { get => gamesPlayedInInterval; private set => gamesPlayedInInterval = value; }
 
-    private int gamesWon, gamesLost, gamesFinishedInTotal, gamesFinishedInInterval, gamesWonInInterval, gamesPlayedInTotal = 0;
+    private int gamesWon, gamesLost, gamesFinishedInTotal, gamesFinishedInInterval, gamesWonInInterval, gamesPlayedInTotal, gamesPlayedInInterval = 0;
     private float intervalTimer = 0f;
 
     private void Awake()
@@ -47,8 +48,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameWonLost(bool won) {
-        gamesFinishedInTotal++;
-        gamesFinishedInInterval++;
+        GamesFinishedInTotal++;
+        GamesFinishedInInterval++;
+        GamesPlayedInInterval++;
 
         OnGameOver?.Invoke();
 
@@ -81,7 +83,8 @@ public class GameManager : MonoBehaviour
 
     private void OnIntervalFinished() {
         OnIntervalOver?.Invoke();
-        gamesFinishedInInterval = 0;
+        GamesFinishedInInterval = 0;
+        GamesPlayedInInterval = 0;
         GamesWonInInterval = 0;
     }
 }

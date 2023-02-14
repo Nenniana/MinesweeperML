@@ -50,6 +50,6 @@ public class ScreenInformationController : MonoBehaviour
 
     private string CalculateGamesPerInterval()
     {
-        return "G/S: " + GameManager.Instance.GamesFinishedInInterval;
+        return "G/I: " + GameManager.Instance.GamesPlayedInInterval;
     }
 }
