@@ -11,6 +11,8 @@ using Unity.MLAgents.Policies;
 
 public class AgentAlphaOne : Agent
 {
+    public Action<float> OnRewardUpdated;
+
     [SerializeField]
     private Game game;
 
@@ -21,7 +23,10 @@ public class AgentAlphaOne : Agent
     private float winReward = 50f;
 
     [SerializeField]
-    private float requestDecisionTime = 1f;
+    private float requestDecisionTime = 100f;
+
+    [SerializeField]
+    private bool useCustomRequestDecision = false;
 
     protected override void OnEnable() {
         base.OnEnable();
@@ -30,7 +35,11 @@ public class AgentAlphaOne : Agent
         game.OnGameWon += OnGameWon;
         game.OnGameLost += OnGameLost;
 
-        // InvokeRepeating("RequestDecision", requestDecisionTime, requestDecisionTime);
+        if (useCustomRequestDecision) {
+            // GetComponent<DecisionRequester>().enabled = false;
+            MaxStep = BoardManager.Instance.Height * BoardManager.Instance.Width * 10;
+            InvokeRepeating("RequestDecision", requestDecisionTime, requestDecisionTime);
+        }
     }
 
     protected override void OnDisable() {
@@ -62,8 +71,25 @@ public class AgentAlphaOne : Agent
 
     public override void OnEpisodeBegin()
     {
-        // Debug.Log("OnEpisodeBegin");
+        GameManager.Instance.GameFinished();
         game.NewGame();
+    }
+
+    public override void AddReward(float reward) {
+        base.AddReward(reward);
+
+        OnRewardUpdated?.Invoke(GetCumulativeReward());
+    }
+
+    public override void SetReward(float reward)
+    {
+        base.SetReward(reward);
+
+        OnRewardUpdated?.Invoke(GetCumulativeReward());
+    }
+
+    private float GetReward() {
+        return GetCumulativeReward();
     }
 
     public override void CollectObservations(VectorSensor sensor)

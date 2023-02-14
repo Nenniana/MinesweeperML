@@ -1,0 +1,29 @@
+{
+    "Minesweeper_Pick_Move": {
+        "checkpoints": [
+            {
+                "steps": 2922,
+                "file_path": "results\\ScoreTest\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-2922.onnx",
+                "reward": -2.395681179775281,
+                "creation_time": 1676370929.047842,
+                "auxillary_file_paths": [
+                    "results\\ScoreTest\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-2922.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2922,
+            "file_path": "results\\ScoreTest\\Minesweeper_Pick_Move.onnx",
+            "reward": -2.395681179775281,
+            "creation_time": 1676370929.047842,
+            "auxillary_file_paths": [
+                "results\\ScoreTest\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-2922.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

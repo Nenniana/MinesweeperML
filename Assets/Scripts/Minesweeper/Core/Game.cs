@@ -16,15 +16,19 @@ namespace MineSweeper
         public Action OnGameWon;
         public Action OnGameLost;
         public Action<float> OnScoreUpdate;
+        public Action OnIndicatedMove;
+
+        [SerializeField]
+        private bool copySettingsFromBoardManager = true;
 
         [SerializeField]
         private int width = 16;
         [SerializeField]
         private int height = 16;
         [SerializeField]
+        private int mineCount = 1;
+
         private float gridSize = 1;
-        [SerializeField]
-        private int mineCount = 32;
 
         [SerializeField]
         private float progressWeight = 2;
@@ -54,8 +58,18 @@ namespace MineSweeper
         public float Score { get { return score;} set { score = value; } }
 
         private void Awake() {
+            if (copySettingsFromBoardManager)
+                CopySettings();
+
             TryGetComponent<Board>(out board);
             Camera.main.transform.position = new Vector3(gameObject.transform.localPosition.x + width/2, gameObject.transform.localPosition.x + height / 2, -1);
+        }
+
+        private void CopySettings()
+        {
+            height = BoardManager.Instance.Height;
+            width = BoardManager.Instance.Width;
+            mineCount = BoardManager.Instance.MineCount;
         }
 
         private void Start() {
@@ -142,6 +156,7 @@ namespace MineSweeper
             if (gameState == GameState.InProgress)
             {
                 CheckWinCondition();
+                OnIndicatedMove?.Invoke();
                 // Debug.Log("Move was made. Game is in: " + gameState + " state.");
 
                 if (reveal == 0)
@@ -149,8 +164,8 @@ namespace MineSweeper
                 else
                     Flag(x, y);
 
+                board.UpdateTileVisualRightText(state[x, y], "C");
                 informationUtilities.UpdateInformation(state);
-                Debug.Log("I made a move");
             }
         }
 
@@ -170,7 +185,7 @@ namespace MineSweeper
                     else if (tile.Type == TileType.Empty)
                         Flood(tile);
                     else if (tile.Type == TileType.Mine)
-                        Exlode(tile);
+                        Explode(tile);
                     else {
 
                         OnScoreUpdate?.Invoke(CalculateReward(normalTileScore));
@@ -186,9 +201,8 @@ namespace MineSweeper
             }
         }
 
-        private void Exlode(Tile tile)
+        private void Explode(Tile tile)
         {
-            Debug.Log("Game Over!");
             gameState = GameState.GameOver;
             
             /* 
@@ -200,6 +214,7 @@ namespace MineSweeper
             RevealAll(true); */
 
             OnGameLost?.Invoke();
+            GameManager.Instance.GameWonLost(false);
         }
 
         private void RevealAll(bool minesOnly) {
@@ -318,8 +333,7 @@ namespace MineSweeper
             if (((height * width) - tilesRevealed) <= mineCount) {
                 gameState = GameState.Won;
                 OnGameWon?.Invoke();
-                // RevealAll(true);
-                Debug.Log("Game won!");
+                GameManager.Instance.GameWonLost(true);
             }
         }
 

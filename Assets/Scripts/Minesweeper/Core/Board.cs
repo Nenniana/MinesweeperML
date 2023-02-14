@@ -35,7 +35,7 @@ namespace MineSweeper
         }
 
         private void OnDisable() {
-            game.OnNewMove -= OnNewMoveMade;
+            game.OnIndicatedMove -= OnNewMoveMade;
         }
 
         public void ResetBoardVisuals() {
@@ -47,7 +47,7 @@ namespace MineSweeper
 
         public void GenerateBoardVisuals(Tile[,] state, Game _game) {
             game = _game;
-            game.OnNewMove += OnNewMoveMade;
+            game.OnIndicatedMove += OnNewMoveMade;
 
             InitializeBoardVisuals(state);
         }
@@ -95,7 +95,7 @@ namespace MineSweeper
             }
         }
 
-        private void OnNewMoveMade(Move obj)
+        private void OnNewMoveMade()
         {
             if (specialTileVisualComponents != null && specialTileVisualComponents.Count > 0) {
                 specialTileVisualComponents.ForEach(c => c.NullLeftRightText());

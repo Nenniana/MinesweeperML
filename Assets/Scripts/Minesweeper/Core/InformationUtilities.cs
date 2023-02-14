@@ -40,10 +40,10 @@ namespace MineSweeper
                 {
                     float enumValue = 0f;
 
-                    /* if (tile.State == TileState.Unrevealed)
+                    if (state[x, y].State == TileState.Unrevealed)
                         enumValue = (float)TileType.Unrevealed;
-                    else */
-                    enumValue = (float)state[x, y].Type;
+                    else
+                        enumValue = (float)state[x, y].Type;
 
                     relevantTilesFloats.Add(enumValue);
                 }
