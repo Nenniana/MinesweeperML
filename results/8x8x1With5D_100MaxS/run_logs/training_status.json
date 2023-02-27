@@ -1,0 +1,65 @@
+{
+    "Minesweeper_Pick_Move": {
+        "checkpoints": [
+            {
+                "steps": 4999999,
+                "file_path": "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-4999999.onnx",
+                "reward": 93.30061463270142,
+                "creation_time": 1676484200.158346,
+                "auxillary_file_paths": [
+                    "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-4999999.pt"
+                ]
+            },
+            {
+                "steps": 5499997,
+                "file_path": "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-5499997.onnx",
+                "reward": 96.03499938281765,
+                "creation_time": 1676486602.9096684,
+                "auxillary_file_paths": [
+                    "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-5499997.pt"
+                ]
+            },
+            {
+                "steps": 5999984,
+                "file_path": "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-5999984.onnx",
+                "reward": 105.63280387693156,
+                "creation_time": 1676489333.2963035,
+                "auxillary_file_paths": [
+                    "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-5999984.pt"
+                ]
+            },
+            {
+                "steps": 6499980,
+                "file_path": "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-6499980.onnx",
+                "reward": 115.21609599282297,
+                "creation_time": 1676492392.0664766,
+                "auxillary_file_paths": [
+                    "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-6499980.pt"
+                ]
+            },
+            {
+                "steps": 6522253,
+                "file_path": "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-6522253.onnx",
+                "reward": 105.96771958499147,
+                "creation_time": 1676492596.465328,
+                "auxillary_file_paths": [
+                    "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-6522253.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6522253,
+            "file_path": "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move.onnx",
+            "reward": 105.96771958499147,
+            "creation_time": 1676492596.465328,
+            "auxillary_file_paths": [
+                "results\\8x8x1With5D_100MaxS\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-6522253.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

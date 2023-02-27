@@ -37,7 +37,7 @@ public class AgentAlphaOne : Agent
 
         if (useCustomRequestDecision) {
             // GetComponent<DecisionRequester>().enabled = false;
-            MaxStep = BoardManager.Instance.Height * BoardManager.Instance.Width * 10;
+            MaxStep = 0;
             InvokeRepeating("RequestDecision", requestDecisionTime, requestDecisionTime);
         }
     }

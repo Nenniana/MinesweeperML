@@ -1,0 +1,65 @@
+{
+    "Minesweeper_Pick_Move": {
+        "checkpoints": [
+            {
+                "steps": 91499993,
+                "file_path": "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-91499993.onnx",
+                "reward": 61.35250178912214,
+                "creation_time": 1677195003.5908508,
+                "auxillary_file_paths": [
+                    "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-91499993.pt"
+                ]
+            },
+            {
+                "steps": 91999997,
+                "file_path": "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-91999997.onnx",
+                "reward": 71.94348184818482,
+                "creation_time": 1677196744.642453,
+                "auxillary_file_paths": [
+                    "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-91999997.pt"
+                ]
+            },
+            {
+                "steps": 92499992,
+                "file_path": "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-92499992.onnx",
+                "reward": 66.47127428425358,
+                "creation_time": 1677198278.149409,
+                "auxillary_file_paths": [
+                    "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-92499992.pt"
+                ]
+            },
+            {
+                "steps": 92999950,
+                "file_path": "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-92999950.onnx",
+                "reward": 75.47157314107018,
+                "creation_time": 1677200215.8455267,
+                "auxillary_file_paths": [
+                    "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-92999950.pt"
+                ]
+            },
+            {
+                "steps": 93204958,
+                "file_path": "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-93204958.onnx",
+                "reward": 74.63508588337183,
+                "creation_time": 1677201205.409392,
+                "auxillary_file_paths": [
+                    "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-93204958.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 93204958,
+            "file_path": "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move.onnx",
+            "reward": 74.63508588337183,
+            "creation_time": 1677201205.409392,
+            "auxillary_file_paths": [
+                "results\\8x8x3With5D_100MaxS_NewParam_BigPun\\Minesweeper_Pick_Move\\Minesweeper_Pick_Move-93204958.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
