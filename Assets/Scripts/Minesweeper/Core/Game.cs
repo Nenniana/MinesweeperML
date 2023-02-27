@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using Unity.MLAgents;
 
 namespace MineSweeper
 {
@@ -17,6 +18,8 @@ namespace MineSweeper
         public Action OnGameLost;
         public Action<float> OnScoreUpdate;
         public Action OnIndicatedMove;
+        // public Action<int, int> TileRevealed;
+        // public void OnTileRevealed(int x, int y) => TileRevealed?.Invoke(x, y);
 
         [SerializeField]
         private bool copySettingsFromBoardManager = true;
@@ -41,7 +44,7 @@ namespace MineSweeper
 
         private Board board;
         private Tile[,] state;
-        
+
         private GameState gameState = GameState.Calculating;
 
         // [SerializeReference]
@@ -54,42 +57,51 @@ namespace MineSweeper
         private int tilesRevealed;
         [ShowInInspector]
         private float score;
-        
-        public float Score { get { return score;} set { score = value; } }
 
-        private void Awake() {
+
+        public float Score { get { return score; } set { score = value; } }
+
+        private void Awake()
+        {
             if (copySettingsFromBoardManager)
                 CopySettings();
 
             TryGetComponent<Board>(out board);
-            Camera.main.transform.position = new Vector3(gameObject.transform.localPosition.x + width/2, gameObject.transform.localPosition.x + height / 2, -1);
+            Camera.main.transform.position = new Vector3(gameObject.transform.localPosition.x + width / 2, gameObject.transform.localPosition.x + height / 2, -1);
         }
 
         private void CopySettings()
         {
             height = BoardManager.Instance.Height;
             width = BoardManager.Instance.Width;
-            mineCount = BoardManager.Instance.MineCount;
+            if (!BoardManager.Instance.UseCurriculumMineCount)
+                mineCount = BoardManager.Instance.MineCount;
+            else
+                mineCount = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("mine_count", 1.0f);
         }
 
-        private void Start() {
+        private void Start()
+        {
             InitializeBoardVisuals();
         }
 
-        private void InitializeGame() {
+        private void InitializeGame()
+        {
             tilesRevealed = 0;
             Score = 0;
             board.ResetBoardVisuals();
             GameStarted();
         }
 
-        private void InitializeBoardVisuals() {
+        private void InitializeBoardVisuals()
+        {
             GenerateBoardMechanics();
             board.GenerateBoardVisuals(state, this);
             GameStarted();
         }
 
-        private void GenerateBoardMechanics() {
+        private void GenerateBoardMechanics()
+        {
             state = new Tile[width, height];
             GenerateTiles();
             GenerateMines();
@@ -100,26 +112,37 @@ namespace MineSweeper
         [Button]
         public void NewGame()
         {
+            CheckCurriculum();
             GenerateBoardMechanics();
             InitializeGame();
         }
 
-        private void GameStarted() {
+        private void CheckCurriculum()
+        {
+            if (BoardManager.Instance.UseCurriculumMineCount)
+                mineCount = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("mine_count", 1.0f);
+        }
+
+        private void GameStarted()
+        {
             OnGameStarted?.Invoke();
             gameState = GameState.InProgress;
         }
 
         [Button]
-        private void LoadMoveState(int moveIndex) {
+        private void LoadMoveState(int moveIndex)
+        {
             // LoadGame(moveUtilities.GetMove(moveIndex).state);
         }
 
         [Button]
-        private void PreviousMoveState() {
+        private void PreviousMoveState()
+        {
             // LoadGame(moveUtilities.GetPreviousMove().state);
         }
 
-        private void LoadGame(Tile[,] newState) {
+        private void LoadGame(Tile[,] newState)
+        {
             state = newState.Clone() as Tile[,];
             InitializeGame();
             OnGameLoaded?.Invoke(state);
@@ -137,8 +160,10 @@ namespace MineSweeper
             board.UpdateTileVisual(state[tilePosition.x, tilePosition.y]);
         } */
 
-        private void Update() {
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            {
                 Vector2Int movePosition = GetMousePosition();
 
                 if (Input.GetMouseButtonDown(1))
@@ -152,7 +177,8 @@ namespace MineSweeper
             }
         }
 
-        public void Move(int x, int y, int reveal) {
+        public void Move(int x, int y, int reveal)
+        {
             if (gameState == GameState.InProgress)
             {
                 CheckWinCondition();
@@ -170,32 +196,37 @@ namespace MineSweeper
         }
 
         private void Reveal(int x, int y)
-        {            
+        {
             if (IsValidTile(x, y))
             {
-                if (state[x, y].State != TileState.Revealed) {
+                if (state[x, y].State != TileState.Revealed)
+                {
 
                     /* moveUtilities.SaveMove(MoveType.Default, new Vector2Int(x, y), state);
                     OnNewMove?.Invoke(moveUtilities.GetCurrentMove()); */
 
                     Tile tile = state[x, y];
-                    
+
                     if (tile.State == TileState.Flagged)
                         return;
                     else if (tile.Type == TileType.Empty)
                         Flood(tile);
                     else if (tile.Type == TileType.Mine)
                         Explode(tile);
-                    else {
+                    else
+                    {
 
                         OnScoreUpdate?.Invoke(CalculateReward(normalTileScore));
+                        // OnTileRevealed(x, y);
                         tile.State = TileState.Revealed;
                         state[x, y] = tile;
                         board.UpdateTileVisual(tile);
                         tilesRevealed++;
                         CheckWinCondition();
                     }
-                } else {
+                }
+                else
+                {
                     OnScoreUpdate?.Invoke(alreadyRevealedScore);
                 }
             }
@@ -204,7 +235,7 @@ namespace MineSweeper
         private void Explode(Tile tile)
         {
             gameState = GameState.GameOver;
-            
+
             /* 
             tile.State = TileState.Exploded;
             tile.Type = TileType.Exploded;
@@ -217,17 +248,22 @@ namespace MineSweeper
             GameManager.Instance.GameWonLost(false);
         }
 
-        private void RevealAll(bool minesOnly) {
+        private void RevealAll(bool minesOnly)
+        {
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    if (minesOnly) {
-                        if (state[x, y].Type == TileType.Mine) {
+                    if (minesOnly)
+                    {
+                        if (state[x, y].Type == TileType.Mine)
+                        {
                             state[x, y].State = TileState.Revealed;
                             board.UpdateTileVisual(state[x, y]);
                         }
-                    } else {
+                    }
+                    else
+                    {
                         state[x, y].State = TileState.Revealed;
                         board.UpdateTileVisual(state[x, y]);
                     }
@@ -241,13 +277,15 @@ namespace MineSweeper
                 return;
 
             OnScoreUpdate?.Invoke(CalculateReward(emptyFloodScore));
+            // OnTileRevealed(tile.gridPosition.x, tile.gridPosition.y);
             tile.State = TileState.Revealed;
             state[tile.gridPosition.x, tile.gridPosition.y] = tile;
             board.UpdateTileVisual(tile);
             tilesRevealed++;
             CheckWinCondition();
 
-            if (tile.Type == TileType.Empty) {
+            if (tile.Type == TileType.Empty)
+            {
                 if (IsValidTile(tile.gridPosition.x, tile.gridPosition.y - 1))
                     Flood(state[tile.gridPosition.x, tile.gridPosition.y - 1]);
                 if (IsValidTile(tile.gridPosition.x, tile.gridPosition.y + 1))
@@ -262,18 +300,21 @@ namespace MineSweeper
 
         private void Flag(int x, int y)
         {
-            if (IsValidTile(x, y)) {
+            if (IsValidTile(x, y))
+            {
 
                 // Cannot flag if already revealed
                 if (state[x, y].State == TileState.Revealed || state[x, y].Type == TileType.Invalid)
                     return;
 
-                if (state[x, y].State == TileState.Flagged) {
+                if (state[x, y].State == TileState.Flagged)
+                {
                     state[x, y].State = TileState.Unrevealed;
                     /* moveUtilities.SaveMove(MoveType.Unflag, new Vector2Int(x, y), state);
                     OnNewMove?.Invoke(moveUtilities.GetCurrentMove()); */
                 }
-                else if (state[x, y].State == TileState.Unrevealed) {
+                else if (state[x, y].State == TileState.Unrevealed)
+                {
                     state[x, y].State = TileState.Flagged;
                     /* moveUtilities.SaveMove(MoveType.Flag, new Vector2Int(x, y), state);
                     OnNewMove?.Invoke(moveUtilities.GetCurrentMove()); */
@@ -283,18 +324,21 @@ namespace MineSweeper
             }
         }
 
-        private Vector2Int GetMousePosition() {
+        private Vector2Int GetMousePosition()
+        {
             Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane);
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             Vector2Int gridPosition = GetGridPositionByWorld(worldPosition);
             return gridPosition;
         }
 
-        private Vector2Int GetGridPositionByWorld(Vector3 worldPosition) {
+        private Vector2Int GetGridPositionByWorld(Vector3 worldPosition)
+        {
             return new Vector2Int(Mathf.RoundToInt(worldPosition.x / gridSize), Mathf.RoundToInt(worldPosition.y / gridSize));
         }
 
-        private void GenerateTiles() {
+        private void GenerateTiles()
+        {
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
@@ -305,18 +349,22 @@ namespace MineSweeper
             }
         }
 
-        private void GenerateMines() {
-            foreach (var mine in RandomUtilities.GetRandomElements2D(state, mineCount)) {
+        private void GenerateMines()
+        {
+            foreach (var mine in RandomUtilities.GetRandomElements2D(state, mineCount))
+            {
                 state[mine.gridPosition.x, mine.gridPosition.y].Type = TileType.Mine;
             }
         }
 
-        private float CalculateReward(float value) {
+        private float CalculateReward(float value)
+        {
             // Debug.Log("Tiles revealed value: " + ((float)tilesRevealed / ((float)height * (float)width)));
             return value * ((((float)tilesRevealed / ((float)height * (float)width)) * progressWeight));
         }
 
-        private void GenerateNumbers() {
+        private void GenerateNumbers()
+        {
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
@@ -324,25 +372,31 @@ namespace MineSweeper
                     if (state[x, y].Type == TileType.Mine)
                         continue;
 
-                    state[x, y].SetNumber(CountMines(x, y));                 
+                    state[x, y].SetNumber(CountMines(x, y));
                 }
             }
         }
 
-        private void CheckWinCondition() {
-            if (((height * width) - tilesRevealed) <= mineCount) {
+        private void CheckWinCondition()
+        {
+            if (((height * width) - tilesRevealed) <= mineCount)
+            {
                 gameState = GameState.Won;
                 OnGameWon?.Invoke();
                 GameManager.Instance.GameWonLost(true);
             }
         }
 
-        private int CountMines(int x, int y) {
+        private int CountMines(int x, int y)
+        {
             int count = 0;
 
-            for (int adjacentX = x-1; adjacentX <= x+1; adjacentX++) {
-                for (int adjacentY = y-1; adjacentY <= y+1; adjacentY++) {
-                    if (IsValidTile(adjacentX, adjacentY)) {
+            for (int adjacentX = x - 1; adjacentX <= x + 1; adjacentX++)
+            {
+                for (int adjacentY = y - 1; adjacentY <= y + 1; adjacentY++)
+                {
+                    if (IsValidTile(adjacentX, adjacentY))
+                    {
                         if (adjacentX == x && adjacentY == y)
                             continue;
 
@@ -355,7 +409,8 @@ namespace MineSweeper
             return count;
         }
 
-        internal List<Tile> GetAdjacentTiles(int x, int y) {
+        internal List<Tile> GetAdjacentTiles(int x, int y)
+        {
             List<Tile> adjacentTiles = new List<Tile>();
 
             for (int adjacentX = x - 1; adjacentX <= x + 1; adjacentX++)
@@ -375,7 +430,8 @@ namespace MineSweeper
             return adjacentTiles;
         }
 
-        private bool IsValidTile(int x, int y) {
+        private bool IsValidTile(int x, int y)
+        {
             return x >= 0 && x < width && y >= 0 && y < height;
         }
     }

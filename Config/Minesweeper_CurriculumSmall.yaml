@@ -1,0 +1,66 @@
+behaviors:
+  Minesweeper_Curriculum:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 128 #64
+      buffer_size: 16384 #12032
+      learning_rate: 0.0003
+      beta: 5.0e-3 #maybe needs to be decreased to prevent random behaviour
+      epsilon: 0.2
+      lambd: 0.97 #0.96 #0.99
+      num_epoch: 3
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: false
+      hidden_units: 64 #128
+      num_layers: 2
+      vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.85 #0.99
+        strength: 1.0
+    keep_checkpoints: 5
+    max_steps: 1000000
+    time_horizon: 100 #1000
+    summary_freq: 12000
+environment_parameters:
+  mine_count:
+    curriculum:
+      - name: Lesson0 # This is the start of the second lesson
+        completion_criteria:
+          measure: progress
+          behavior: Minesweeper_Curriculum
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 0.05
+        value: 1.0
+      - name: Lesson1
+        completion_criteria:
+          measure: progress
+          behavior: Minesweeper_Curriculum
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 0.5
+        value: 2.0
+      - name: Lesson2
+        value: 3.0
+  per_agent_max_steps:
+    curriculum:
+      - name: Lesson0 # This is the start of the second lesson
+        completion_criteria:
+          measure: progress
+          behavior: Minesweeper_Curriculum
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 0.05
+        value: 50
+      - name: Lesson1
+        completion_criteria:
+          measure: progress
+          behavior: Minesweeper_Curriculum
+          signal_smoothing: true
+          min_lesson_length: 100
+          threshold: 0.5
+        value: 150
+      - name: Lesson2
+        value: 200

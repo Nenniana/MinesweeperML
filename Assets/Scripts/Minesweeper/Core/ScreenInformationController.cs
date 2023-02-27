@@ -13,13 +13,19 @@ public class ScreenInformationController : MonoBehaviour
     private TMPro.TextMeshProUGUI totalGamesPlayedText;
     [SerializeField]
     private TMPro.TextMeshProUGUI gamesPerIntervalText;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI gamesPerFixedIntervalText;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         GameManager.Instance.OnIntervalOver += UpdateInformation;
+        GameManager.Instance.OnFixedIntervalOver += UpdateFixedInformation;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         GameManager.Instance.OnIntervalOver -= UpdateInformation;
+        GameManager.Instance.OnFixedIntervalOver -= UpdateFixedInformation;
     }
 
     private void UpdateInformation()
@@ -28,6 +34,11 @@ public class ScreenInformationController : MonoBehaviour
         overallWinRatioText.text = CalculateWinRatio(GameManager.Instance.GamesWon, GameManager.Instance.GamesFinishedInTotal, "OWR: ");
         currentWinRatioText.text = CalculateWinRatio(GameManager.Instance.GamesWonInInterval, GameManager.Instance.GamesFinishedInInterval, "CWR: ");
         totalGamesPlayedText.text = CalculateTotalGamesPlayed();
+    }
+
+    private void UpdateFixedInformation()
+    {
+        gamesPerFixedIntervalText.text = CalculateGamesPerFixedInterval();
     }
 
     private string CalculateTotalGamesPlayed()
@@ -39,7 +50,8 @@ public class ScreenInformationController : MonoBehaviour
     {
         string text = _text;
 
-        if (gamesWon > 0) {
+        if (gamesWon > 0)
+        {
             if (gamesPlayed > 0)
                 return text += (((float)gamesWon / (float)gamesPlayed) * 100.0f).ToString("0.0") + "%";
             return text + "0%";
@@ -51,5 +63,10 @@ public class ScreenInformationController : MonoBehaviour
     private string CalculateGamesPerInterval()
     {
         return "G/I: " + GameManager.Instance.GamesPlayedInInterval;
+    }
+
+    private string CalculateGamesPerFixedInterval()
+    {
+        return "G/I (Fixed): " + GameManager.Instance.GamesPlayedInFixedInterval;
     }
 }

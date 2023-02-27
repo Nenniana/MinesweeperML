@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Action OnGameWon, OnGameLost, OnGameOver, OnIntervalOver;
+    public Action OnGameWon, OnGameLost, OnGameOver, OnIntervalOver, OnFixedIntervalOver;
 
     [HideInInspector]
     public static GameManager Instance { get; private set; }
 
     [SerializeField]
     private float intervalWaitTime = 60f;
+    [SerializeField]
+    private float fixedIntervalWaitTime = 60f;
 
     [SerializeField]
     private bool enableScores = true;
@@ -33,7 +35,16 @@ public class GameManager : MonoBehaviour
     public int GamesPlayedInInterval { get => gamesPlayedInInterval; private set => gamesPlayedInInterval = value; }
 
     private int gamesWon, gamesLost, gamesFinishedInTotal, gamesFinishedInInterval, gamesWonInInterval, gamesPlayedInTotal, gamesPlayedInInterval = 0;
+
+    /* --------------- FIXED INTERVAL VARIABLES ---------------*/
+    public int GamesFinishedInFixedInterval { get => gamesFinishedInFixedInterval; private set => gamesFinishedInFixedInterval = value; }
+    public float FixedIntervalWaitTime { get => fixedIntervalWaitTime; private set => fixedIntervalWaitTime = value; }
+    public int GamesWonInFixedInterval { get => gamesWonInFixedInterval; private set => gamesWonInFixedInterval = value; }
+    public int GamesPlayedInFixedInterval { get => gamesPlayedInFixedInterval; private set => gamesPlayedInFixedInterval = value; }
+
+    private int gamesFinishedInFixedInterval, gamesWonInFixedInterval, gamesPlayedInFixedInterval = 0;
     private float intervalTimer = 0f;
+    private float fixedIntervalTimer = 0f;
 
     private void Awake()
     {
@@ -47,10 +58,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameWonLost(bool won) {
+    public void GameWonLost(bool won)
+    {
         GamesFinishedInTotal++;
         GamesFinishedInInterval++;
         GamesPlayedInInterval++;
+        GamesFinishedInFixedInterval++;
+        GamesPlayedInFixedInterval++;
 
         OnGameOver?.Invoke();
 
@@ -59,19 +73,24 @@ public class GameManager : MonoBehaviour
             OnGameWon?.Invoke();
             GamesWon++;
             GamesWonInInterval++;
-        } else {
+            GamesWonInFixedInterval++;
+        }
+        else
+        {
             OnGameLost?.Invoke();
             GamesLost++;
         }
     }
 
-    public void GameFinished() {
+    public void GameFinished()
+    {
         GamesPlayedInTotal++;
 
         OnGameOver?.Invoke();
     }
 
-    private void Update() {
+    private void Update()
+    {
         intervalTimer += Time.deltaTime;
 
         if (intervalTimer >= IntervalWaitTime)
@@ -81,10 +100,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnIntervalFinished() {
+
+    private void FixedUpdate()
+    {
+        fixedIntervalTimer += Time.fixedDeltaTime;
+
+        if (fixedIntervalTimer >= fixedIntervalWaitTime)
+        {
+            OnFixedIntervalFinished();
+            fixedIntervalTimer = 0f;
+        }
+    }
+
+    private void OnIntervalFinished()
+    {
         OnIntervalOver?.Invoke();
         GamesFinishedInInterval = 0;
         GamesPlayedInInterval = 0;
         GamesWonInInterval = 0;
+    }
+
+    private void OnFixedIntervalFinished()
+    {
+        OnFixedIntervalOver?.Invoke();
+        GamesFinishedInFixedInterval = 0;
+        gamesPlayedInFixedInterval = 0;
+        gamesWonInFixedInterval = 0;
     }
 }

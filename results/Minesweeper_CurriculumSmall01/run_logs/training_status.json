@@ -1,0 +1,53 @@
+{
+    "mine_count": {
+        "lesson_num": 2
+    },
+    "per_agent_max_steps": {
+        "lesson_num": 2
+    },
+    "Minesweeper_Curriculum": {
+        "checkpoints": [
+            {
+                "steps": 499999,
+                "file_path": "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum\\Minesweeper_Curriculum-499999.onnx",
+                "reward": 82.63450280343008,
+                "creation_time": 1676585359.3534794,
+                "auxillary_file_paths": [
+                    "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum\\Minesweeper_Curriculum-499999.pt"
+                ]
+            },
+            {
+                "steps": 999993,
+                "file_path": "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum\\Minesweeper_Curriculum-999993.onnx",
+                "reward": 51.53193287037037,
+                "creation_time": 1676587621.6999648,
+                "auxillary_file_paths": [
+                    "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum\\Minesweeper_Curriculum-999993.pt"
+                ]
+            },
+            {
+                "steps": 1000003,
+                "file_path": "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum\\Minesweeper_Curriculum-1000003.onnx",
+                "reward": 51.508020679126574,
+                "creation_time": 1676587621.7422295,
+                "auxillary_file_paths": [
+                    "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum\\Minesweeper_Curriculum-1000003.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000003,
+            "file_path": "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum.onnx",
+            "reward": 51.508020679126574,
+            "creation_time": 1676587621.7422295,
+            "auxillary_file_paths": [
+                "results\\Minesweeper_CurriculumSmall01\\Minesweeper_Curriculum\\Minesweeper_Curriculum-1000003.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
