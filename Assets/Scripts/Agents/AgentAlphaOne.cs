@@ -29,7 +29,7 @@ public class AgentAlphaOne : Agent
     private bool useCustomRequestDecision = false;
 
     // (branchIndex, actionIndex)
-    // private List<(int, int)> actionMasks;
+    private List<int> actionIndices;
 
     protected override void OnEnable()
     {
@@ -38,9 +38,9 @@ public class AgentAlphaOne : Agent
         game.OnScoreUpdate += OnScoreUpdated;
         game.OnGameWon += OnGameWon;
         game.OnGameLost += OnGameLost;
-        // game.TileRevealed += OnTileRevealed;
+        game.TileRevealed += OnTileRevealed;
 
-        // actionMasks = new List<(int, int)>();
+        actionIndices = new List<int>();
 
         if (useCustomRequestDecision)
         {
@@ -61,7 +61,7 @@ public class AgentAlphaOne : Agent
         game.OnScoreUpdate -= OnScoreUpdated;
         game.OnGameWon -= OnGameWon;
         game.OnGameLost -= OnGameLost;
-        // game.TileRevealed -= OnTileRevealed;
+        game.TileRevealed -= OnTileRevealed;
     }
 
     private void OnGameLost()
@@ -76,11 +76,17 @@ public class AgentAlphaOne : Agent
         EndEpisode();
     }
 
-    // private void OnTileRevealed(int x, int y)
-    // {
-    //     actionMasks.Add((0, x));
-    //     actionMasks.Add((1, y));
-    // }
+    void ResetMask()
+    {
+        // for(int i= 0; i < 64; i++)
+        //     actionMask.SetActionEnabled(0, i, true);
+        actionIndices.Clear();
+    }
+
+    private void OnTileRevealed(int x, int y)
+    {
+        actionIndices.Add((x * 8) + y);
+    }
 
     private void OnScoreUpdated(float reward)
     {
@@ -91,6 +97,7 @@ public class AgentAlphaOne : Agent
 
     public override void OnEpisodeBegin()
     {
+        ResetMask();
         GameManager.Instance.GameFinished();
         MaxStep = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("per_agent_max_steps", 600.0f);
         game.NewGame();
@@ -122,18 +129,19 @@ public class AgentAlphaOne : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        int moveX = actions.DiscreteActions[0];
-        int moveY = actions.DiscreteActions[1];
+        int pickedIndex = actions.DiscreteActions[0];
+        int moveX = pickedIndex / 8;
+        int moveY = pickedIndex % 8;
         // int moveType = actions.DiscreteActions[2];
 
         game.Move(moveX, moveY, 0);
     }
 
-    // public override void WriteDiscreteActionMask(IDiscreteActionMask actionMask)
-    // {
-    //     foreach ((int, int) mask in actionMasks)
-    //     {
-    //         actionMask.SetActionEnabled(mask.Item1, mask.Item2, false);
-    //     }
-    // }
+    public override void WriteDiscreteActionMask(IDiscreteActionMask actionMask)
+    {
+        foreach (int actionIndex in actionIndices)
+        {
+            actionMask.SetActionEnabled(0, actionIndex, false);
+        }
+    }
 }

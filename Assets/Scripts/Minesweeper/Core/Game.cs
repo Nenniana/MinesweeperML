@@ -18,8 +18,8 @@ namespace MineSweeper
         public Action OnGameLost;
         public Action<float> OnScoreUpdate;
         public Action OnIndicatedMove;
-        // public Action<int, int> TileRevealed;
-        // public void OnTileRevealed(int x, int y) => TileRevealed?.Invoke(x, y);
+        public Action<int, int> TileRevealed;
+        public void OnTileRevealed(int x, int y) => TileRevealed?.Invoke(x, y);
 
         [SerializeField]
         private bool copySettingsFromBoardManager = true;
@@ -190,8 +190,13 @@ namespace MineSweeper
                 else
                     Flag(x, y);
 
-                board.UpdateTileVisualRightText(state[x, y], "C");
-                informationUtilities.UpdateInformation(state);
+                if (!IsValidTile(x, y))
+                    Debug.LogWarning("INVALID TILE  x: " + x + " y: " + y);
+                else
+                {
+                    board.UpdateTileVisualRightText(state[x, y], "C");
+                    informationUtilities.UpdateInformation(state);
+                }
             }
         }
 
@@ -217,7 +222,7 @@ namespace MineSweeper
                     {
 
                         OnScoreUpdate?.Invoke(CalculateReward(normalTileScore));
-                        // OnTileRevealed(x, y);
+                        OnTileRevealed(x, y);
                         tile.State = TileState.Revealed;
                         state[x, y] = tile;
                         board.UpdateTileVisual(tile);
@@ -227,6 +232,7 @@ namespace MineSweeper
                 }
                 else
                 {
+                    Debug.LogWarning("Already revealed");
                     OnScoreUpdate?.Invoke(alreadyRevealedScore);
                 }
             }
@@ -277,7 +283,7 @@ namespace MineSweeper
                 return;
 
             OnScoreUpdate?.Invoke(CalculateReward(emptyFloodScore));
-            // OnTileRevealed(tile.gridPosition.x, tile.gridPosition.y);
+            OnTileRevealed(tile.gridPosition.x, tile.gridPosition.y);
             tile.State = TileState.Revealed;
             state[tile.gridPosition.x, tile.gridPosition.y] = tile;
             board.UpdateTileVisual(tile);

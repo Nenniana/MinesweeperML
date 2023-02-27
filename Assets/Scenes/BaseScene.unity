@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &138287295
 Transform:
   m_ObjectHideFlags: 0
@@ -358,8 +358,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0800000008000000
-    VectorActionSize: 0800000008000000
+      BranchSizes: 40000000
+    VectorActionSize: 40000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -480,7 +480,6 @@ GameObject:
   - component: {fileID: 451167006}
   - component: {fileID: 451167005}
   - component: {fileID: 451167004}
-  - component: {fileID: 451167007}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -507,8 +506,8 @@ MonoBehaviour:
   game: {fileID: 1312956824}
   lossReward: -50
   winReward: 50
-  requestDecisionTime: 100
-  useCustomRequestDecision: 0
+  requestDecisionTime: 1
+  useCustomRequestDecision: 1
 --- !u!114 &451167005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,8 +525,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0800000008000000
-    VectorActionSize: 0800000008000000
+      BranchSizes: 40000000
+    VectorActionSize: 40000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -554,20 +553,6 @@ Transform:
   m_Father: {fileID: 8636640}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &451167007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451167002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 10
-  TakeActionsBetweenDecisions: 0
 --- !u!1 &468803315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,7 +1189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &793734759
 Transform:
   m_ObjectHideFlags: 0
@@ -1584,8 +1569,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0800000008000000
-    VectorActionSize: 0800000008000000
+      BranchSizes: 40000000
+    VectorActionSize: 40000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -2058,8 +2043,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0800000008000000
-    VectorActionSize: 0800000008000000
+      BranchSizes: 40000000
+    VectorActionSize: 40000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -2596,7 +2581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1483889863
 Transform:
   m_ObjectHideFlags: 0
@@ -2700,8 +2685,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0800000008000000
-    VectorActionSize: 0800000008000000
+      BranchSizes: 40000000
+    VectorActionSize: 40000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -2799,8 +2784,8 @@ MonoBehaviour:
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
-      BranchSizes: 0800000008000000
-    VectorActionSize: 0800000008000000
+      BranchSizes: 40000000
+    VectorActionSize: 40000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -4493,7 +4478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1772985811
 Transform:
   m_ObjectHideFlags: 0
@@ -4640,7 +4625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1949840636
 Transform:
   m_ObjectHideFlags: 0
