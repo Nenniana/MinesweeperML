@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1677666721",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Python39\\Scripts\\mlagents-learn Config\\Minesweeper_Curriculum.yaml --run-id=Hidden1_8X8X4_Curriculum --resume",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1677666727"
+    },
+    "total": 6.516010399999999,
+    "count": 1,
+    "self": 0.023154799999998588,
+    "children": {
+        "run_training.setup": {
+            "total": 0.13614360000000003,
+            "count": 1,
+            "self": 0.13614360000000003
+        },
+        "TrainerController.start_learning": {
+            "total": 6.356712000000001,
+            "count": 1,
+            "self": 0.0003478000000010084,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 6.356353,
+                    "count": 1,
+                    "self": 6.356353
+                },
+                "trainer_threads": {
+                    "total": 8.000000004670937e-07,
+                    "count": 1,
+                    "self": 8.000000004670937e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 1.0399999998966791e-05,
+                    "count": 1,
+                    "self": 1.0399999998966791e-05
+                }
+            }
+        }
+    }
+}

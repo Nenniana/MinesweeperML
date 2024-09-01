@@ -1,0 +1,71 @@
+{
+    "mine_count": {
+        "lesson_num": 2
+    },
+    "per_agent_max_steps": {
+        "lesson_num": 2
+    },
+    "Minesweeper_Curriculum": {
+        "checkpoints": [
+            {
+                "steps": 18499994,
+                "file_path": "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-18499994.onnx",
+                "reward": 202.39300834299436,
+                "creation_time": 1677657807.33495,
+                "auxillary_file_paths": [
+                    "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-18499994.pt"
+                ]
+            },
+            {
+                "steps": 18999997,
+                "file_path": "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-18999997.onnx",
+                "reward": 203.985628342246,
+                "creation_time": 1677660345.8067238,
+                "auxillary_file_paths": [
+                    "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-18999997.pt"
+                ]
+            },
+            {
+                "steps": 19499991,
+                "file_path": "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-19499991.onnx",
+                "reward": 127.20152414336856,
+                "creation_time": 1677662681.204676,
+                "auxillary_file_paths": [
+                    "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-19499991.pt"
+                ]
+            },
+            {
+                "steps": 19999997,
+                "file_path": "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-19999997.onnx",
+                "reward": 128.86432291666668,
+                "creation_time": 1677664778.812483,
+                "auxillary_file_paths": [
+                    "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-19999997.pt"
+                ]
+            },
+            {
+                "steps": 20356910,
+                "file_path": "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-20356910.onnx",
+                "reward": null,
+                "creation_time": 1677666507.678332,
+                "auxillary_file_paths": [
+                    "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-20356910.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20356910,
+            "file_path": "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum.onnx",
+            "reward": null,
+            "creation_time": 1677666507.678332,
+            "auxillary_file_paths": [
+                "results\\Hidden1_8X8X4_Curriculum\\Minesweeper_Curriculum\\Minesweeper_Curriculum-20356910.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

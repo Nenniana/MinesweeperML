@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &138287295
 Transform:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 03412998ffe4dfa43acfdbb0d9d92571, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: Minesweeper_Curriculum
@@ -502,7 +502,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 03412998ffe4dfa43acfdbb0d9d92571, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: Minesweeper_Curriculum
@@ -1131,7 +1131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &793734759
 Transform:
   m_ObjectHideFlags: 0
@@ -1487,7 +1487,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 03412998ffe4dfa43acfdbb0d9d92571, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: Minesweeper_Curriculum
@@ -1963,7 +1963,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 03412998ffe4dfa43acfdbb0d9d92571, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: Minesweeper_Curriculum
@@ -2497,7 +2497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1483889863
 Transform:
   m_ObjectHideFlags: 0
@@ -2607,7 +2607,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 03412998ffe4dfa43acfdbb0d9d92571, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: Minesweeper_Curriculum
@@ -2723,7 +2723,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 03412998ffe4dfa43acfdbb0d9d92571, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: Minesweeper_Curriculum
@@ -4399,7 +4399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1772985811
 Transform:
   m_ObjectHideFlags: 0
@@ -4516,7 +4516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1949840636
 Transform:
   m_ObjectHideFlags: 0
