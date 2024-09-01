@@ -24,8 +24,6 @@ The MinesweeperML project is designed to serve as a learning and experimentation
 
 ## Potential Enhancements
 
-- **Advanced Training Techniques**: Experimenting with more sophisticated training methods or additional models could further improve the performance and efficiency of the agents in solving Minesweeper puzzles.
-
 - **Enhanced Visualization**: Adding more detailed visual feedback for the agent's decision-making process could help in better understanding the model's learning and actions.
 
 ## Usage
