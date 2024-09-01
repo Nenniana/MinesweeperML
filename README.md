@@ -2,7 +2,7 @@
 
 ![Minesweeper Example Scene](./READMEAssets/MinesweeperMLDemonstration_IncludedModel.gif)
 
-This project is a Minesweeper game developed as part of a Games thesis project at the I.T. University of Copenhagen. It explores the capabilities of the ML-Agents Unity package by applying machine learning techniques to train agents to play Minesweeper. This project was developed in collaboration with a fellow student.
+This project is a Minesweeper game developed as part of a Games thesis project at the I.T. University of Copenhagen. It explores the capabilities of the ML-Agents Unity package by applying machine learning techniques to train agents to play Minesweeper. This project was developed in collaboration with fellow student [Hysse](https://github.com/Hysse).
 
 ## Overview
 
