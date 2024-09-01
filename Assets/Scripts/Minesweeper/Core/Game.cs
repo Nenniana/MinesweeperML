@@ -129,7 +129,7 @@ namespace MineSweeper
             gameState = GameState.InProgress;
         }
 
-        [Button]
+        /* [Button]
         private void LoadMoveState(int moveIndex)
         {
             // LoadGame(moveUtilities.GetMove(moveIndex).state);
@@ -139,15 +139,15 @@ namespace MineSweeper
         private void PreviousMoveState()
         {
             // LoadGame(moveUtilities.GetPreviousMove().state);
-        }
+        } */
 
-        private void LoadGame(Tile[,] newState)
+        /* private void LoadGame(Tile[,] newState)
         {
             state = newState.Clone() as Tile[,];
             InitializeGame();
             OnGameLoaded?.Invoke(state);
             // IndicateMove();
-        }
+        } */
 
         /* private void IndicateMove()
         {
