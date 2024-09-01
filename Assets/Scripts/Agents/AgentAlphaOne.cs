@@ -66,13 +66,13 @@ public class AgentAlphaOne : Agent
 
     private void OnGameLost()
     {
-        AddReward(lossReward);
+        AddRewardCustom(lossReward);
         EndEpisode();
     }
 
     private void OnGameWon()
     {
-        AddReward(winReward);
+        AddRewardCustom(winReward);
         EndEpisode();
     }
 
@@ -92,7 +92,7 @@ public class AgentAlphaOne : Agent
     {
         // Debug.Log("Score updated: " + reward);
 
-        AddReward(reward);
+        AddRewardCustom(reward);
     }
 
     public override void OnEpisodeBegin()
@@ -103,14 +103,14 @@ public class AgentAlphaOne : Agent
         game.NewGame();
     }
 
-    public override void AddReward(float reward)
+    public void AddRewardCustom(float reward)
     {
         base.AddReward(reward);
 
         OnRewardUpdated?.Invoke(GetCumulativeReward());
     }
 
-    public override void SetReward(float reward)
+    public void SetRewardCustom(float reward)
     {
         base.SetReward(reward);
 
