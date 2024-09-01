@@ -10,7 +10,7 @@ The MinesweeperML project is designed to serve as a learning and experimentation
 
 ## Features
 
-- **Example Scene (BaseScene)**: An example scene is provided, where multiple Minesweeper boards and agents are displayed, utilizing a pre-trained model. This scene serves as a demonstration of how the trained agents interact with the game environment.
+- **Example Scene (BaseScene)**: An example scene is provided, where multiple Minesweeper boards and agents are displayed, utilizing a pre-trained model. This scene serves as a demonstration of how the trained agents interact with the game environment. The agents previous move is denoted by a small square next to the chosen space.
   
 - **Board Management**: The `BoardManager` (attached to the GameManager object) allows users to configure the size of the Minesweeper board and the number of mines. While the included models are trained specifically on 64-tile boards, this setting can be adjusted for experimentation purposes.
 
